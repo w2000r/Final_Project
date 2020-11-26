@@ -10,22 +10,22 @@ class SelfDrive:
         self.count = 30
 
     def lds_callback(self, scan):
-
+        turtle_vel = Twist()	
         # scan 분석 후 속도 결정
         # ...   scan.ranges[0]=0.5
-        for i in range(30)
-            if scan.ranges[i] <= 0.25
+        for i in range(30):
+            if scan.ranges[i] <= 0.25:
                turtle_vel.linear.x = 0 
-               turtle_vel.angular.z = 0.5     
-            if scan.ranges[-i] <= 0.25
+             #  turtle_vel.angular.z = 0.5     
+            if scan.ranges[-i] <= 0.25:
                turtle_vel.linear.x = 0
-               turtle_vel.angular.z = 0.5 
-            else 
-                turtle_vel.linear.x = 0.15
+             #  turtle_vel.angular.z = 0.5 
+            else :
+               turtle_vel.linear.x = 0.15
              
         
         print("scan[0]:", scan.ranges[0])
-        turtle_vel = Twist()
+        
          # 속도 출력
         self.publisher.publish(turtle_vel)
 
