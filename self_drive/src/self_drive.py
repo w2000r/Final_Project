@@ -13,21 +13,26 @@ class SelfDrive:
         turtle_vel = Twist()	
         # scan 분석 후 속도 결정
         # ...   scan.ranges[0]=0.5
+
+        count = 0
+
         for i in range(30):
-            if scan.ranges[i] <= 0.25:
-               turtle_vel.linear.x = 0 
-             #  turtle_vel.angular.z = 0.5     
-            if scan.ranges[-i] <= 0.25:
-               turtle_vel.linear.x = 0
-             #  turtle_vel.angular.z = 0.5 
-            else :
-               turtle_vel.linear.x = 0.15
-             
-        
+            if (scan.ranges[i] <= 0.25) or (scan.ranges[-i] <= 0.25):
+                turtle_vel.linear.x = 0
+                turtle_vel.angular.z = 0.6
+
+            else:
+                turtle_vel.linear.x = 0.15
+                turtle_vel.angular.z = 0
+                #for j in range(count):
+                #turtle_vel.angular.z = -0.5
+
+
         print("scan[0]:", scan.ranges[0])
         
          # 속도 출력
         self.publisher.publish(turtle_vel)
+
 
 def main():
     rospy.init_node('self_drive')
