@@ -17,17 +17,13 @@ class SelfDrive:
             if (scan.ranges[i] <= 0.27) or (scan.ranges[-i] <= 0.27):
                 turtle_vel.linear.x = 0
                 if (scan.ranges[i] > scan.ranges[-i]):
-                    print("right1")
                     turtle_vel.angular.z = 1
                     if (abs(scan.ranges[i] - scan.ranges[-i]) < 0.5):
                         turtle_vel.angular.z = 2
-                        print("right")
                 else:
-                    print("left1")
                     turtle_vel.angular.z = -1
                     if (abs(scan.ranges[i] - scan.ranges[-i]) < 0.5):
                         turtle_vel.angular.z = -2
-                        print("left")
             else:
                 turtle_vel.linear.x = 0.15
                 turtle_vel.angular.z = 0
